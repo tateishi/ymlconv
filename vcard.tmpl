@@ -1,0 +1,32 @@
+{% for c in contacts %}
+BEGIN:VCARD
+VERSION:3.0
+FN:{{c.name.last}} {{c.name.first}}
+N:{{c.name.last}};{{c.name.first}};;;
+X-PHONETIC-FIRST-NAME:{{c.phonetic.first}}
+X-PHONETIC-LAST-NAME:{{c.phonetic.last}}
+{% for mail in c.email -%}
+item{{ loop.index }}.EMAIL;TYPE=INTERNET:{{ mail.address }}
+item{{ loop.index }}.X-ABLabel:{{ mail.label }}
+{% endfor -%}
+{% for phone in c.tel -%}
+TEL;TYPE={{ phone.label }}:{{ phone.number }}
+{% endfor -%}
+{% for fax in c.fax -%}
+TEL;TYPE={{ fax.label }}:TYPE=fax:{{ fax.number }}
+{% endfor -%}
+{% for addr in c.address -%}
+item{{ c.email|length + loop.index }}.ADR:;;{{ addr.city }}{{ addr.street }};;{{ addr.prefecture }};{{ addr.zip }};{{ addr.country }};{{ addr.city }}{{ addr.street }}\n{{ addr.prefecture }} {{ addr.zip }}\n{{ addr.country }}
+item{{ c.email|length + loop.index }}.X-ABLabel:{{ addr.label }}
+{% endfor -%}
+{% for o in c.org -%}
+ORG:{{ o.name }};{{ o.section }}
+TITLE:{{ o.title }}
+{% endfor -%}
+{% for url in c.url -%}
+URL;TYPE={{ url.label }}:{{ url.link }}
+{% endfor -%}
+BDAY:{{ c.birthday }}
+CATEGORIES: {{ c.category|join(' ') }}
+END:VCARD
+{% endfor %}
