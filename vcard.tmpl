@@ -27,6 +27,6 @@ TITLE:{{ o.title }}
 URL;TYPE={{ url.label }}:{{ url.link }}
 {% endfor -%}
 BDAY:{{ c.birthday }}
-CATEGORIES: {{ c.category|join(' ') }}
+CATEGORIES: {{ c.category|join(',') }}
 END:VCARD
 {% endfor %}
