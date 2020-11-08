@@ -13,7 +13,7 @@ item{{ loop.index }}.X-ABLabel:{{ mail.label }}
 TEL;TYPE={{ phone.label }}:{{ phone.number }}
 {% endfor -%}
 {% for fax in c.fax -%}
-TEL;TYPE={{ fax.label }}:TYPE=fax:{{ fax.number }}
+TEL;TYPE={{ fax.label }};TYPE=fax:{{ fax.number }}
 {% endfor -%}
 {% for addr in c.address -%}
 ADR;TYPE={{ addr.label }}:;{{ addr.building }};{{ addr.city }}{{ addr.street }};;{{ addr.prefecture }};{{ addr.zip }};{{ addr.country }};{{ addr.city }}{{ addr.street }}{{ addr.building }}\n{{ addr.prefecture }} {{ addr.zip }}\n{{ addr.country }}
