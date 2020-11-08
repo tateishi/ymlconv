@@ -16,8 +16,7 @@ TEL;TYPE={{ phone.label }}:{{ phone.number }}
 TEL;TYPE={{ fax.label }}:TYPE=fax:{{ fax.number }}
 {% endfor -%}
 {% for addr in c.address -%}
-item{{ c.email|length + loop.index }}.ADR:;;{{ addr.city }}{{ addr.street }};;{{ addr.prefecture }};{{ addr.zip }};{{ addr.country }};{{ addr.city }}{{ addr.street }}\n{{ addr.prefecture }} {{ addr.zip }}\n{{ addr.country }}
-item{{ c.email|length + loop.index }}.X-ABLabel:{{ addr.label }}
+ADR;TYPE={{ addr.label }}:;{{ addr.building }};{{ addr.city }}{{ addr.street }};;{{ addr.prefecture }};{{ addr.zip }};{{ addr.country }};{{ addr.city }}{{ addr.street }}{{ addr.building }}\n{{ addr.prefecture }} {{ addr.zip }}\n{{ addr.country }}
 {% endfor -%}
 {% for o in c.org -%}
 ORG:{{ o.name }};{{ o.section }}
