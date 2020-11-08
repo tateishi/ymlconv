@@ -1,10 +1,10 @@
 {% for c in contacts %}
 BEGIN:VCARD
 VERSION:3.0
-FN:{{c.name.last}} {{c.name.first}}
-N:{{c.name.last}};{{c.name.first}};;;
-X-PHONETIC-FIRST-NAME:{{c.phonetic.first}}
-X-PHONETIC-LAST-NAME:{{c.phonetic.last}}
+FN:{{ c.name.last }} {{ c.name.first }}
+N:{{ c.name.last }};{{ c.name.first }};;;
+X-PHONETIC-FIRST-NAME:{{ c.phonetic.first }}
+X-PHONETIC-LAST-NAME:{{ c.phonetic.last }}
 {% for mail in c.email -%}
 item{{ loop.index }}.EMAIL;TYPE=INTERNET:{{ mail.address }}
 item{{ loop.index }}.X-ABLabel:{{ mail.label }}
